@@ -77,4 +77,56 @@
 
     <div class="RSVP">
         <h2>RSVP here!</h2>
+        <!-- Form -->
+        <form id="rsvpForm">
+            <table id="rsvpTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Will Attend</th>
+                        <th>Vegetarian?</th>
+                        <th>Note</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="name[]" required></td>
+                        <td><input type="email" name="email[]" required></td>
+                        <td style="text-align: center;"><input type="checkbox" name="willAttend[]"></td>
+                        <td style="text-align: center;"><input type="checkbox" name="vegetarian[]"></td>
+                        <td><input type="text" name="note[]"></td>
+                        <td class="remove-button" onclick="removeRow(this)">×</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="add-button" onclick="addRow()">Add Attendee</button>
+            <br>
+            <button type="submit">Submit RSVP</button>
+        </form>
+        <!-- Table interaction features -->
+        <script>
+            function addRow() {
+                const table = document.getElementById('rsvpTable').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+            newRow.innerHTML = `
+            <tr>
+                <td><input type="text" name="name[]" required></td>
+                <td><input type="email" name="email[]" required></td>
+                <td style="text-align: center;"><input type="checkbox" name="willAttend[]"></td>
+                <td style="text-align: center;"><input type="checkbox" name="vegetarian[]"></td>
+                <td><input type="text" name="note[]"></td>
+                <td class="remove-button" onclick="removeRow(this)">×</td>
+            </tr>
+                `;
+            }
+
+            function removeRow(button) {
+                const row = button.closest('tr');
+                row.parentNode.removeChild(row);
+            }
+        </script>
+
     </div>
+</body>
