@@ -62,8 +62,14 @@
      <style>
         /* Ensure bullet points are visible */
         ul {
-            list-style-type: disc !important;
-            padding-left: 20px;
+            list-style-type: disc !important;  /* Force standard bullet points */
+            padding-left: 20px;  /* Ensure proper indentation */
+            text-align: left; /* Ensure text inside lists is aligned left */
+        }
+
+        /* Fix text alignment inside columns */
+        .text-start {
+            text-align: left !important;
         }
     </style>
 </head>
@@ -138,7 +144,7 @@
                 <div class="wp3">
 
                     <h5>Ceremony <span class="time">14:00 - 15:00</span></h5>
-                    <p> blablabla standesamt ceremony</p>
+                    <p> Civil wedding ceremony and party at Berggasthof Kellerskopf, Kellerskopf 1, 65207 Wiesbaden. If you wish to contribute to the program of the day, please get in touch with out witnesses Alice and Heinrich (see contact details below). </p>
                 </div>
                 <div class="wp5">
                     <h5>Sektampfang <span class="time">15:00 - 17:00</span></h5>
@@ -190,7 +196,7 @@
         <h3>How do I get there?</h3>
         <p>Kellerskopf is located in a remote area outside Wiesbaden on a hilltop, so best reached by car. Let us know if you need a ride from Frankfurt or Wiesbaden to the location and we will try to arrange a carpool with other guests. </p>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 text-start">
                 <h5><i class="fa fa-car"></i>   Car</h5>
                 <ul>
                     <li>Take the A3 until exit 455-Wiesbaden-Königstein, then stay on the right in the direction of WI-Rambach. Signs lead you directly to the restaurant.</li>
@@ -198,14 +204,14 @@
                     <li>Parking is available directly at the restaurant on the hilltop!</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 text-start">
                 <h5><i class="fa fa-train"></i>   Train</h5>
                 <ul>
                     <li>The closest regional train station reachable from Frankfurt or Wiesbaden is Niedernhausen (S2, RB21). From there, it’s a 15-min taxi ride.</li>
                     <li>Alternatively, the location can be reached via taxi from Wiesbaden train station in 30 minutes and from Frankfurt train station in 40 minutes.</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 text-start">
                 <h5><i class="fa fa-plane"></i>   Flight</h5>
                 <p>From Frankfurt airport, it’s a 35-min taxi ride.</p>
             </div>
