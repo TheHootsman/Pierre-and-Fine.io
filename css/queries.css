@@ -234,11 +234,6 @@
         margin-bottom: 40px;
     }
     
-    #map-content {
-        margin-top: 0;
-        padding: 35px;
-    }
-
     .rsvp {
         padding-top: 40px;
     }
@@ -256,19 +251,7 @@
     .hero .hero-content {
         padding-top: 100%;
     }
-
-    #eng-pics .img-wrap i {
-        font-size: 25px;
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        top: 10px;
-        right: 10px; }
-
-    #map-content-wrapper {
-        margin-bottom: 0;
-    }
-    
+  
     footer ul.footer-group {
         border-top: none;
     }
