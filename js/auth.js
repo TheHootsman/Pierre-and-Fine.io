@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const correctHash = "ef92b778bafe771e89245b89ecbc1833a9d6c3311db7a6c2872aa9bcd49a0c06"; // SHA-256 of "mypassword"
+    const correctHash = "9a45271efef868a31ebbd528c407c678c33d8982871d92da3a766c1283c12f69"; // SHA-256 of the famous password
 
     // Function to hash input string
     async function hashString(str) {
