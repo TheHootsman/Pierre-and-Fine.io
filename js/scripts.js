@@ -1,19 +1,3 @@
-/********************** Authentication *********************/
-(function () {
-    const correctPassword = "mypassword"; // Change this!
-
-    let userInput = prompt("Enter the password:");
-
-    if (userInput !== correctPassword) {
-        alert("Incorrect password! Access denied.");
-        document.write(""); // Completely erase the page content
-    } else {
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("protected-content").style.display = "block";
-        });
-    }
-})();
-
 $(document).ready(function () {
 
     /***************** Waypoints ******************/
