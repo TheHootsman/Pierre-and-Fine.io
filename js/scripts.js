@@ -1,21 +1,18 @@
 /********************** Authentication *********************/
-document.addEventListener("DOMContentLoaded", function () {
-    initPasswordProtection();
-});
-
-function initPasswordProtection() {
-    const correctPassword = "Toto123"; // Change this!
+(function () {
+    const correctPassword = "mypassword"; // Change this!
 
     let userInput = prompt("Enter the password:");
 
-    if (userInput === correctPassword) {
-        document.getElementById("protected-content").style.display = "block";
-    } else {
+    if (userInput !== correctPassword) {
         alert("Incorrect password! Access denied.");
-        document.body.innerHTML = ""; // Clear content
-        return; // Stop further execution
+        document.write(""); // Completely erase the page content
+    } else {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("protected-content").style.display = "block";
+        });
     }
-}
+})();
 
 $(document).ready(function () {
 
