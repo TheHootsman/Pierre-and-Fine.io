@@ -1,8 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-    checkPassword();
-});
-
-async function checkPassword() {
+(async function () {
     const correctHash = "ef92b778bafe771e89245b89ecbc1833a9d6c3311db7a6c2872aa9bcd49a0c06"; // SHA-256 of "mypassword"
 
     async function hashString(str) {
@@ -13,7 +9,17 @@ async function checkPassword() {
         return hashArray.map(byte => byte.toString(16).padStart(2, "0")).join("");
     }
 
-    let userInput = prompt("Please enter the password:");
+    function requestPassword() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let userInput = prompt("Please enter the password:");
+                resolve(userInput);
+            }, 0); // Ensure prompt runs after script execution starts
+        });
+    }
+
+    let userInput = await requestPassword();
+
     if (userInput) {
         let hashedInput = await hashString(userInput);
         if (hashedInput === correctHash) {
@@ -24,4 +30,4 @@ async function checkPassword() {
 
     alert("Incorrect password! Access denied.");
     document.body.innerHTML = ""; // Erase content
-}
+})();
