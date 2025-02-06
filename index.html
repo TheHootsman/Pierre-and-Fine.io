@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"> 
 
-    <script src="js/auth.js" defer></script>
+<!--    <script src="js/auth.js" defer></script> -->
     <script>
         // load css files from CDN if local node_modules fail
         function loadCssFromCDN(css) {
@@ -61,7 +61,7 @@
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
 </head>
-<body id="top" style="display: none;">
+<body id="top" style="display: block;">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -122,16 +122,16 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                <div class="wp3">
+                <div class="wp1">
 
                     <h5>Ceremony <span class="time">14:00 - 15:00</span></h5>
                     <p> Civil wedding ceremony and party at Berggasthof Kellerskopf, Kellerskopf 1, 65207 Wiesbaden. If you wish to contribute to the program of the day, please get in touch with out witnesses Alice and Heinrich (see contact details below). </p>
                 </div>
-                <div class="wp5">
+                <div class="wp2">
                     <h5>Sektampfang <span class="time">15:00 - 17:00</span></h5>
                     <p>blabla drinking and cake</p>
                 </div>
-                <div class="wp6">
+                <div class="wp3">
                     <h5>Dinner <span class="time">18:00 - 02:30</span></h5>
                     <p>This is the main event of the evening</p>
                 </div>
@@ -164,20 +164,24 @@
 
 <section id="video-bg" class="hidden-sm hidden-xs">
     <div id="bgndVideo" class="player"
-         data-property="{videoURL:'https://www.youtu.be/1vAhhBLNLfc',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:2, stopAt:120, opacity:1}">
+         data-property="{videoURL:'https://www.youtu.be/1vAhhBLNLfc',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:2, stopAt:60, opacity:1}">
     </div>
     <div id="video-content">
-        <h5>Wiesbaden</h5>
-        <p>City of joy</p>
+        <h5>Kellerskopf</h5>
+        <p>Wiesbaden</p>
     </div>
 </section>
 
-<section id="map" class="section-padding">
-    <div class="container text-center">
+<section id="howdoi" class="section-padding">
+    <div class="container text-center howdoi">
         <h3>How do I get there?</h3>
         <p>Kellerskopf is located in a remote area outside Wiesbaden on a hilltop, so best reached by car. Let us know if you need a ride from Frankfurt or Wiesbaden to the location and we will try to arrange a carpool with other guests. </p>
-        <div class="row text-left">
-            <div class="col-md-4 text-start">
+    </div>
+</section>
+<section id="directions" class="directions">
+    <div class="row text-left section-padding directions">
+        <div class="container">
+            <div class="col-md-4 col-sm-12 col-xs-12 leftcol">
                 <h5><i class="fa fa-car"></i>   Car</h5>
                 <ul>
                     <li>Take the A3 until exit 455-Wiesbaden-Königstein, then stay on the right in the direction of WI-Rambach. Signs lead you directly to the restaurant.</li>
@@ -185,19 +189,24 @@
                     <li>Parking is available directly at the restaurant on the hilltop!</li>
                 </ul>
             </div>
-            <div class="col-md-4 text-start">
+            <div class="col-md-4 col-sm-12 col-xs-12 midcol">
                 <h5><i class="fa fa-train"></i>   Train</h5>
                 <ul>
                     <li>The closest regional train station reachable from Frankfurt or Wiesbaden is Niedernhausen (S2, RB21). From there, it’s a 15-min taxi ride.</li>
                     <li>Alternatively, the location can be reached via taxi from Wiesbaden train station in 30 minutes and from Frankfurt train station in 40 minutes.</li>
+                    <br><br>
                 </ul>
             </div>
-            <div class="col-md-4 text-start">
+            <div class="col-md-4 col-sm-12 col-xs-12 rightcol">
                 <h5><i class="fa fa-plane"></i>   Flight</h5>
-                <p>From Frankfurt airport, it’s a 35-min taxi ride.</p>
+                <ul>
+                    <li>From Frankfurt airport, it’s a 35-min taxi ride.</li>
+                </ul>   
             </div>
         </div>
     </div>
+</section>
+<section id="map" class="map">
     <div id="map-canvas"></div>
     <div id="map-content-wrapper" class="container pointer-events-none">
         <div class="row">
