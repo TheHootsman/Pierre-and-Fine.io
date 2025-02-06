@@ -226,9 +226,21 @@
         padding: 0 20px;
     }
     
-    #eng-pics .img-wrap {
-        border-radius: 0;
+    .directions .leftcol {
+        padding: 0 30px;
+        margin-bottom: 15px;
     }
+
+    .directions .midcol {
+        padding: 0 30px;
+        margin-bottom: 0px;
+        border-left: none;
+        border-right: none;
+    }
+    .directions .rightcol {
+        padding: 0 30px;
+    }
+
 
     #map-content-wrapper {
         margin-bottom: 40px;
