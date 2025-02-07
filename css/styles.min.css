@@ -152,14 +152,16 @@ ul {
 
 section.howdoi,
 section.intro,
-section.rsvp {
+section.accomodation {
 	background: #fff
 }
 
 section.events,
-section.directions {
+section.directions,
+section.rsvp {
 	background: #f8f9fd
 }
+
 
 .group:after {
 	content: "";
@@ -838,7 +840,7 @@ header .member-actions {
 
 #map-content-wrapper {
 	position: relative;
-	margin-top: -502px;
+	margin-top: -552px;
 	margin-bottom: 150px
 }
 
@@ -851,7 +853,7 @@ header .member-actions {
 }
 
 #btn-show-content {
-	padding: 20px;
+	padding: 25px;
 	background: #fff;
 	cursor: pointer;
 	display: inline-block;
