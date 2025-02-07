@@ -1,464 +1,388 @@
-$(document).ready(function () {
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Pierre & Fine</title>
+    <meta name="description" content="We would like to invite you to our big day!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Pierre & Fine">
+    <meta property="og:description" content="We would like to invite you to our big day!">
+    <meta property="og:image" content="dummy">
+    <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"> 
 
-    /***************** Waypoints ******************/
-
-    $('.wp1').waypoint(function () {
-        $('.wp1').addClass('animated fadeInLeft');
-    }, {
-        offset: '75%'
-    });
-    $('.wp2').waypoint(function () {
-        $('.wp2').addClass('animated fadeInRight');
-    }, {
-        offset: '75%'
-    });
-    $('.wp3').waypoint(function () {
-        $('.wp3').addClass('animated fadeInLeft');
-    }, {
-        offset: '75%'
-    });
-    $('.wp4').waypoint(function () {
-        $('.wp4').addClass('animated fadeInRight');
-    }, {
-        offset: '75%'
-    });
-    $('.wp5').waypoint(function () {
-        $('.wp5').addClass('animated fadeInLeft');
-    }, {
-        offset: '75%'
-    });
-    $('.wp6').waypoint(function () {
-        $('.wp6').addClass('animated fadeInRight');
-    }, {
-        offset: '75%'
-    });
-    $('.wp7').waypoint(function () {
-        $('.wp7').addClass('animated fadeInUp');
-    }, {
-        offset: '75%'
-    });
-    $('.wp8').waypoint(function () {
-        $('.wp8').addClass('animated fadeInLeft');
-    }, {
-        offset: '75%'
-    });
-    $('.wp9').waypoint(function () {
-        $('.wp9').addClass('animated fadeInRight');
-    }, {
-        offset: '75%'
-    });
-
-    /***************** Initiate Flexslider ******************/
-    $('.flexslider').flexslider({
-        animation: "slide"
-    });
-
-    /***************** Initiate Fancybox ******************/
-
-    $('.single_image').fancybox({
-        padding: 4
-    });
-
-    $('.fancybox').fancybox({
-        padding: 4,
-        width: 1000,
-        height: 800
-    });
-
-    /***************** Tooltips ******************/
-    $('[data-toggle="tooltip"]').tooltip();
-
-    /***************** Nav Transformicon ******************/
-
-    /* When user clicks the Icon */
-    $('.nav-toggle').click(function () {
-        $(this).toggleClass('active');
-        $('.header-nav').toggleClass('open');
-        event.preventDefault();
-    });
-    /* When user clicks a link */
-    $('.header-nav li a').click(function () {
-        $('.nav-toggle').toggleClass('active');
-        $('.header-nav').toggleClass('open');
-
-    });
-
-    /***************** Header BG Scroll ******************/
-
-    $(function () {
-        $(window).scroll(function () {
-            var scroll = $(window).scrollTop();
-
-            if (scroll >= 20) {
-                $('section.navigation').addClass('fixed');
-                $('header').css({
-                    "border-bottom": "none",
-                    "padding": "35px 0"
-                });
-                $('header .member-actions').css({
-                    "top": "26px",
-                });
-                $('header .navicon').css({
-                    "top": "34px",
-                });
-            } else {
-                $('section.navigation').removeClass('fixed');
-                $('header').css({
-                    "border-bottom": "solid 1px rgba(255, 255, 255, 0.2)",
-                    "padding": "50px 0"
-                });
-                $('header .member-actions').css({
-                    "top": "41px",
-                });
-                $('header .navicon').css({
-                    "top": "48px",
-                });
+<!--    <script src="js/auth.js" defer></script> -->
+    <script>
+        // load css files from CDN if local node_modules fail
+        function loadCssFromCDN(css) {
+            // create new link tag
+            const link = document.createElement('link');
+            if (css === 'animate.css') {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css';
+            } else if (css === 'font-awesome.css') {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
             }
-        });
-    });
-    /***************** Smooth Scrolling ******************/
+            link.rel = 'stylesheet';
 
-    $(function () {
+            // add link tag to head section
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
 
-        $('a[href*=#]:not([href=#])').click(function () {
-            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top - 90
-                    }, 2000);
-                    return false;
-                }
+        // load js files from CDN if local node_modules fail
+        function loadJsFromCDN(js) {
+            if (js === 'waypoints.js') {
+                document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"><\/script>');
+            } else if (js === 'jquery.js') {
+                document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"><\/script>');
             }
-        });
-
-    });
-
+        }
+    </script>
 
     
-    /********************** Embed youtube video *********************/
-    $('.player').YTPlayer();
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/queries.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+</head>
+<body id="top" style="display: block;">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<section class="hero">
+    <section class="navigation">
+        <header>
+            <div class="header-content">
+                <div class="logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div>
+                <div class="header-nav">
+                    <nav>
+                        <ul class="primary-nav">
+                            <li><a href="#invitation">Intro</a></li>
+                            <li><a href="#events">Schedule</a></li>
+                            <li><a href="#location">Location</a></li>
+                            <li><a href="#accomodation">Accomodation</a></li>
+                        </ul>
+                        <ul class="member-actions">
+                            <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="navicon">
+                    <a class="nav-toggle" href="#"><span></span></a>
+                </div>
+            </div>
+        </header>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="hero-content text-center">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
+</section>
+
+<section id="invitation" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>We are getting married!</h3>
+                <p>The date is the 23<sup>rd</sup> of August '25 and we would like you to be a part of
+                    it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="events section-padding" id="events">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="header">Schedule</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <div class="wp1">
+                    <h5>Ceremony <span class="time">14:00 - 15:00</span></h5>
+                    <p> Civil wedding ceremony at Berggasthof Kellerskopf, Wiesbaden. The entire day takes place in the same location! </p>
+                </div>
+                <div class="wp2">
+                    <h5>Sektampfang <span class="time">15:00 - 18:00</span></h5>
+                    <p>Relaxed reception just a few meters away. Get to mingle with other guests around a few glasses of sparkling wine and some cake.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <div class="wp3">
+                    <h5>Dinner & Party<span class="time"> 18:00 - 02:30</span></h5>
+                    <p>This is the main event of the evening! Buffet-style dinner and party! Enjoy some tasty food, drink reasonable and show-off your best dance moves </p>
+                </div>
+            </div>
+        </div>
+        <div class="row section-padding">
+            <div class="col-md-4 col-sm-12 col-xs-12 text-center mb-3">
+                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
+                    <i class="fa fa-barcode"></i> Dress code
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 text-center mb-3">
+                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#g-modal">
+                    <i class="fa fa-gift"></i> Gifts
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 text-center mb-3">
+                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#c-modal">
+                    <i class="fa fa-phone"></i> Contact 
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="dc-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <h3 class="text-center section-padding">Ugh... dress codes?</h3>
+                    <p>
+                        Elegant & summery. Find inspiration below: xxx
+                    </p>       
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="g-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <h3 class="text-center section-padding">Gifts?</h3>
+                    <p>
+                        Gifts.. xyz
+                    </p>       
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="c-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <h3 class="text-center section-padding">Contacts</h3>
+                    <p>
+                        If you wish to contribute to the program of the day, please get in touch with out witnesses Alice and Heinrich :
+                    </p>       
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    
+
+</section>
+
+<section id="location" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>The Location</h3>
+            </div>
+        </div>
+    </div>    
+</section>
+
+<section id="video-bg" class="">
+    <div id="bgndVideo" class="player"
+         data-property="{videoURL:'https://www.youtu.be/1vAhhBLNLfc',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:3, stopAt:60, opacity:1}">
+    </div>
+    <div id="video-content">
+        <h5>Berggasthof Kellerskopf</h5>
+        <p>Wiesbaden</p>
+    </div>
+</section>
+
+<section id="howdoi" class="section-padding">
+    <div class="container text-center howdoi">
+        <h3>How do I get there?</h3>
+        <p>Kellerskopf is located in a remote area outside Wiesbaden on a hilltop, so best reached by car. Let us know if you need a ride from Frankfurt or Wiesbaden to the location and we will try to arrange a carpool with other guests. </p>
+    </div>
+</section>
+<section id="directions" class="directions">
+    <div class="row text-left section-padding directions">
+        <div class="container">
+            <div class="col-md-4 col-sm-12 col-xs-12 leftcol wp4">
+                <h5><i class="fa fa-car"></i>   Car</h5>
+                <ul>
+                    <li>Take the A3 until exit 455-Wiesbaden-Königstein, then stay on the right in the direction of WI-Rambach. Signs lead you directly to the restaurant.</li>
+                    <li><strong>Careful: </strong>Google Maps only leads you to “Parkplatz B455, Wiesbaden”. From there, continue on the road up the hill for 2km to reach the restaurant.</li>
+                    <li>Parking is available directly at the restaurant on the hilltop!</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 midcol wp5">
+                <h5><i class="fa fa-train"></i>   Train</h5>
+                <ul>
+                    <li>The closest regional train station reachable from Frankfurt or Wiesbaden is Niedernhausen (S2, RB21). From there, it’s a 15-min taxi ride.</li>
+                    <li>Alternatively, the location can be reached via taxi from Wiesbaden train station in 30 minutes and from Frankfurt train station in 40 minutes.</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 rightcol wp6">
+                <h5><i class="fa fa-plane"></i>   Flight</h5>
+                <ul>
+                    <li>From Frankfurt airport, it’s a 35-min taxi ride.</li>
+                </ul>   
+            </div>
+        </div>
+    </div>
+</section>
+<section id="map" class="map">
+    <div id="map-canvas"></div>
+    <div id="map-content-wrapper" class="container pointer-events-none">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+                <div class="text-center">
+                    <div id="btn-show-content" class="toggle-map-content pointer-events-auto">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Show info
+                    </div>
+                </div>
+                <div id="map-content" class="pointer-events-auto">
+                    <div class="row text-center">
+                        <h5>Berggasthof Kellerskopf</h5>
+                        <p>Kellerskopf 1, 65207 Wiesbaden</p>
+                        <p><i class="fa fa-external-link"></i><a href="https://kellerskopf.de/"> &nbsp; &nbsp; https://kellerskopf.de/</a></p>
+                    </div>
+                    <div class="row text-center">
+                            <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="accomodation text-center" id="accomodation">
+    <div class="container text-center accomodation ">
+        <h3>Accomodation</h3>
+        <p> There are plenty of accomodation options in the Wiesbaden area, but we negotiated a special price with a nearby hotel (H+ Hotel Wiesbaden Niedernhausen). <br> By using the link below you can book a room directly there! </p>
+        <p><i class="fa fa-external-link"></i><a href="https://short.h-hotels.com/3566826"> &nbsp; &nbsp; https://short.h-hotels.com/3566826</a> </p>
+    </div>
+</section>
 
 
-    /********************** Toggle Map Content **********************/
-    $('#btn-show-map').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
-    });
-    $('#btn-show-content').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
-    });
+<section class="rsvp text-center" id="rsvp">
 
-    /********************** Add to Calendar **********************/
-    var myCalendar = createCalendar({
-        options: {
-            class: '',
-            // You can pass an ID. If you don't, one will be generated for you
-            id: ''
-        },
-        data: {
-            // Event title
-            title: "Pierre and Fine's Wedding",
+    <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <div class="section-padding">
+                        <h3>Thank you!</h3>
+                        <p>We are glad to see you join us on our big day.</p>
+                        <div id="add-to-cal"></div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
-            // Event start date
-            start: new Date('Aug 23, 2025 14:00'),
-            end: new Date('Aug 24, 2025 02:30'),
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h3>What are you waiting for?</h3>
+                <p>We would greatly appreciate if you could RSVP before 1st of May '25</p>
+                <form id="rsvp-form" class="rsvp-form"
+                      action=""
+                      method="POST">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-user"></i><input name="firstname" class=""
+                                                                 placeholder="Your first name"
+                                                                 required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-user"></i><input name="lastname" class=""
+                                                                 placeholder="Your last name"
+                                                                 required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-envelope"></i><input type="email" name="email" class=""
+                                                                     placeholder="Your email"
+                                                                     required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
+                                                                  max="4"
+                                                                  placeholder="Husband/Wife or kids"
+                                                                  required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="alert-wrapper"></div>
+                    </div>
+                    <button class="btn-fill rsvp-btn">
+                        Yes,
+                        that's me!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
-            // Event Address
-            address: 'Kellerskopf, Wiesbaden',
-
-            // Event Description
-            description: "We can't wait to see you on our big day!"
-        }
-    });
-
-    $('#add-to-cal').html(myCalendar);
-
-
-    /********************** RSVP **********************/
-    $('#rsvp-form').on('submit', function (e) {
-        e.preventDefault();
-        var data = $(this).serialize();
-
-        $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
-
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-        } else {
-            $.post('https://script.google.com/macros/s/AKfycbyo0rEknln8LedEP3bkONsfOh776IR5lFidLhJFQ6jdvRiH4dKvHZmtoIybvnxpxYr2cA/exec', data)
-                .done(function (data) {
-                    console.log(data);
-                    if (data.result === "error") {
-                        $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    } else {
-                        $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
-                    }
-                })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                });
-        }
-    });
-
-});
-
-/********************** Extras **********************/
-
-// Google map
-function initMap() {
-    var location = {lat: 50.137896, lng: 8.2830972};
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 15,
-        center: location,
-        scrollwheel: false
-    });
-
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
-}
-
-function initBBSRMap() {
-    var la_fiesta = {lat: 50.137896, lng: 8.2830972};
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 15,
-        center: la_fiesta,
-        scrollwheel: false
-    });
-
-    var marker = new google.maps.Marker({
-        position: la_fiesta,
-        map: map
-    });
-}
-
-// alert_markup
-function alert_markup(alert_type, msg) {
-    return '<div class="alert alert-' + alert_type + '" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button></div>';
-}
-
-// MD5 Encoding
-var MD5 = function (string) {
-
-    function RotateLeft(lValue, iShiftBits) {
-        return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
-    }
-
-    function AddUnsigned(lX, lY) {
-        var lX4, lY4, lX8, lY8, lResult;
-        lX8 = (lX & 0x80000000);
-        lY8 = (lY & 0x80000000);
-        lX4 = (lX & 0x40000000);
-        lY4 = (lY & 0x40000000);
-        lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
-        if (lX4 & lY4) {
-            return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
-        }
-        if (lX4 | lY4) {
-            if (lResult & 0x40000000) {
-                return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
-            } else {
-                return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
-            }
-        } else {
-            return (lResult ^ lX8 ^ lY8);
-        }
-    }
-
-    function F(x, y, z) {
-        return (x & y) | ((~x) & z);
-    }
-
-    function G(x, y, z) {
-        return (x & z) | (y & (~z));
-    }
-
-    function H(x, y, z) {
-        return (x ^ y ^ z);
-    }
-
-    function I(x, y, z) {
-        return (y ^ (x | (~z)));
-    }
-
-    function FF(a, b, c, d, x, s, ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    };
-
-    function GG(a, b, c, d, x, s, ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    };
-
-    function HH(a, b, c, d, x, s, ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    };
-
-    function II(a, b, c, d, x, s, ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    };
-
-    function ConvertToWordArray(string) {
-        var lWordCount;
-        var lMessageLength = string.length;
-        var lNumberOfWords_temp1 = lMessageLength + 8;
-        var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
-        var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
-        var lWordArray = Array(lNumberOfWords - 1);
-        var lBytePosition = 0;
-        var lByteCount = 0;
-        while (lByteCount < lMessageLength) {
-            lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-            lBytePosition = (lByteCount % 4) * 8;
-            lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount) << lBytePosition));
-            lByteCount++;
-        }
-        lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-        lBytePosition = (lByteCount % 4) * 8;
-        lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80 << lBytePosition);
-        lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
-        lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
-        return lWordArray;
-    };
-
-    function WordToHex(lValue) {
-        var WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
-        for (lCount = 0; lCount <= 3; lCount++) {
-            lByte = (lValue >>> (lCount * 8)) & 255;
-            WordToHexValue_temp = "0" + lByte.toString(16);
-            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
-        }
-        return WordToHexValue;
-    };
-
-    function Utf8Encode(string) {
-        string = string.replace(/\r\n/g, "\n");
-        var utftext = "";
-
-        for (var n = 0; n < string.length; n++) {
-
-            var c = string.charCodeAt(n);
-
-            if (c < 128) {
-                utftext += String.fromCharCode(c);
-            }
-            else if ((c > 127) && (c < 2048)) {
-                utftext += String.fromCharCode((c >> 6) | 192);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
-            else {
-                utftext += String.fromCharCode((c >> 12) | 224);
-                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
-
-        }
-
-        return utftext;
-    };
-
-    var x = Array();
-    var k, AA, BB, CC, DD, a, b, c, d;
-    var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
-    var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
-    var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
-    var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
-
-    string = Utf8Encode(string);
-
-    x = ConvertToWordArray(string);
-
-    a = 0x67452301;
-    b = 0xEFCDAB89;
-    c = 0x98BADCFE;
-    d = 0x10325476;
-
-    for (k = 0; k < x.length; k += 16) {
-        AA = a;
-        BB = b;
-        CC = c;
-        DD = d;
-        a = FF(a, b, c, d, x[k + 0], S11, 0xD76AA478);
-        d = FF(d, a, b, c, x[k + 1], S12, 0xE8C7B756);
-        c = FF(c, d, a, b, x[k + 2], S13, 0x242070DB);
-        b = FF(b, c, d, a, x[k + 3], S14, 0xC1BDCEEE);
-        a = FF(a, b, c, d, x[k + 4], S11, 0xF57C0FAF);
-        d = FF(d, a, b, c, x[k + 5], S12, 0x4787C62A);
-        c = FF(c, d, a, b, x[k + 6], S13, 0xA8304613);
-        b = FF(b, c, d, a, x[k + 7], S14, 0xFD469501);
-        a = FF(a, b, c, d, x[k + 8], S11, 0x698098D8);
-        d = FF(d, a, b, c, x[k + 9], S12, 0x8B44F7AF);
-        c = FF(c, d, a, b, x[k + 10], S13, 0xFFFF5BB1);
-        b = FF(b, c, d, a, x[k + 11], S14, 0x895CD7BE);
-        a = FF(a, b, c, d, x[k + 12], S11, 0x6B901122);
-        d = FF(d, a, b, c, x[k + 13], S12, 0xFD987193);
-        c = FF(c, d, a, b, x[k + 14], S13, 0xA679438E);
-        b = FF(b, c, d, a, x[k + 15], S14, 0x49B40821);
-        a = GG(a, b, c, d, x[k + 1], S21, 0xF61E2562);
-        d = GG(d, a, b, c, x[k + 6], S22, 0xC040B340);
-        c = GG(c, d, a, b, x[k + 11], S23, 0x265E5A51);
-        b = GG(b, c, d, a, x[k + 0], S24, 0xE9B6C7AA);
-        a = GG(a, b, c, d, x[k + 5], S21, 0xD62F105D);
-        d = GG(d, a, b, c, x[k + 10], S22, 0x2441453);
-        c = GG(c, d, a, b, x[k + 15], S23, 0xD8A1E681);
-        b = GG(b, c, d, a, x[k + 4], S24, 0xE7D3FBC8);
-        a = GG(a, b, c, d, x[k + 9], S21, 0x21E1CDE6);
-        d = GG(d, a, b, c, x[k + 14], S22, 0xC33707D6);
-        c = GG(c, d, a, b, x[k + 3], S23, 0xF4D50D87);
-        b = GG(b, c, d, a, x[k + 8], S24, 0x455A14ED);
-        a = GG(a, b, c, d, x[k + 13], S21, 0xA9E3E905);
-        d = GG(d, a, b, c, x[k + 2], S22, 0xFCEFA3F8);
-        c = GG(c, d, a, b, x[k + 7], S23, 0x676F02D9);
-        b = GG(b, c, d, a, x[k + 12], S24, 0x8D2A4C8A);
-        a = HH(a, b, c, d, x[k + 5], S31, 0xFFFA3942);
-        d = HH(d, a, b, c, x[k + 8], S32, 0x8771F681);
-        c = HH(c, d, a, b, x[k + 11], S33, 0x6D9D6122);
-        b = HH(b, c, d, a, x[k + 14], S34, 0xFDE5380C);
-        a = HH(a, b, c, d, x[k + 1], S31, 0xA4BEEA44);
-        d = HH(d, a, b, c, x[k + 4], S32, 0x4BDECFA9);
-        c = HH(c, d, a, b, x[k + 7], S33, 0xF6BB4B60);
-        b = HH(b, c, d, a, x[k + 10], S34, 0xBEBFBC70);
-        a = HH(a, b, c, d, x[k + 13], S31, 0x289B7EC6);
-        d = HH(d, a, b, c, x[k + 0], S32, 0xEAA127FA);
-        c = HH(c, d, a, b, x[k + 3], S33, 0xD4EF3085);
-        b = HH(b, c, d, a, x[k + 6], S34, 0x4881D05);
-        a = HH(a, b, c, d, x[k + 9], S31, 0xD9D4D039);
-        d = HH(d, a, b, c, x[k + 12], S32, 0xE6DB99E5);
-        c = HH(c, d, a, b, x[k + 15], S33, 0x1FA27CF8);
-        b = HH(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
-        a = II(a, b, c, d, x[k + 0], S41, 0xF4292244);
-        d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
-        c = II(c, d, a, b, x[k + 14], S43, 0xAB9423A7);
-        b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
-        a = II(a, b, c, d, x[k + 12], S41, 0x655B59C3);
-        d = II(d, a, b, c, x[k + 3], S42, 0x8F0CCC92);
-        c = II(c, d, a, b, x[k + 10], S43, 0xFFEFF47D);
-        b = II(b, c, d, a, x[k + 1], S44, 0x85845DD1);
-        a = II(a, b, c, d, x[k + 8], S41, 0x6FA87E4F);
-        d = II(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0);
-        c = II(c, d, a, b, x[k + 6], S43, 0xA3014314);
-        b = II(b, c, d, a, x[k + 13], S44, 0x4E0811A1);
-        a = II(a, b, c, d, x[k + 4], S41, 0xF7537E82);
-        d = II(d, a, b, c, x[k + 11], S42, 0xBD3AF235);
-        c = II(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB);
-        b = II(b, c, d, a, x[k + 9], S44, 0xEB86D391);
-        a = AddUnsigned(a, AA);
-        b = AddUnsigned(b, BB);
-        c = AddUnsigned(c, CC);
-        d = AddUnsigned(d, DD);
-    }
-
-    var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
-
-    return temp.toLowerCase();
-};
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center content">
+                <span class="to-top-wrapper"><a href="#top" class="to-top"><i class="fa fa-angle-up"></i></a></span>
+                <p>This is a homemade website! See source code on<a href="https://github.com/TheHootsman/Pierre-and-Fine.io"> GitHub</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/vendor/jquery-1.11.2.min.js" onerror="loadJsFromCDN('jquery.js')"></script>
+<script src="node_modules/waypoints/lib/jquery.waypoints.min.js" onerror="loadJsFromCDN('waypoints.js')"></script>
+<script src="js/jquery.fancybox.pack.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+<script src="js/vendor/ouical.js"></script>
+<script src="js/scripts.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHWkM0Cf5t-ty05FGcDh-oFXkmVMeoOTE&callback=initMap"></script>
+</body>
+</html>
