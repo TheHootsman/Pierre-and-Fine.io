@@ -28,6 +28,14 @@
         padding-top: 30%;
     }
 
+    .col-sm-12 {
+        margin-bottom: 30px !important; /* Adjust value as needed */
+    }
+
+    .col-sm-12 .btn {
+        width: 20% !important;
+    }
+
     .header-nav {
         position: fixed;
         background-color: #000;
@@ -245,7 +253,11 @@
     #map-content-wrapper {
         margin-bottom: 40px;
     }
-    
+
+    .accomodation {
+        padding-top: 40px;
+    }
+
     .rsvp {
         padding-top: 40px;
     }
