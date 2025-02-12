@@ -249,7 +249,11 @@
         padding: 0 30px;
     }
 
-
+    .witnesses .leftcol {
+        padding: 0 15px;
+        margin-bottom: 15px;
+        border-right: none;
+    }
     #map-content-wrapper {
         margin-bottom: 40px;
     }
@@ -365,6 +369,11 @@
 @media screen and (max-width: 320px) {
     .hero .hero-content {
         padding-top: 130%;
+    }
+
+    .btn {
+        padding: 6px 10px; /* Reduce padding */
+        font-size: 14px;   /* Reduce font size slightly */
     }
 
     .rsvp {
