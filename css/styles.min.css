@@ -152,16 +152,21 @@ ul {
 
 section.howdoi,
 section.intro,
-section.accomodation {
+section.accomodation,
+section.location,
+section.rsvp {
 	background: #fff
 }
 
 section.events,
 section.directions,
-section.rsvp {
+section.witnesses {
 	background: #f8f9fd
 }
 
+footer {
+	background: #f8f9fd
+}
 
 .group:after {
 	content: "";
@@ -749,6 +754,34 @@ header .member-actions {
 .events .time {
 	font-style: italic;
 	text-transform: lowercase
+}
+
+.witnesses .leftcol {
+	padding-right: 100px;
+	border-right: 1px solid #e6e9ea
+}
+
+.witnesses .rightcol {
+	text-align: right;
+}
+
+/* Make images responsive */
+.witnesses .img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Align left column image */
+.witnesses .left-align-img {
+    display: block;
+    margin-left: 0;  /* Align to the left */
+}
+
+/* Align right column image */
+.witnesses .right-align-img {
+    display: block;
+    margin-left: auto; /* Align to the right */
+    margin-right: 0;
 }
 
 .blog {
