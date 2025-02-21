@@ -266,6 +266,16 @@
         padding-top: 40px;
     }
 
+    .guest-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 10px;
+    }
+    .guest-row input, .guest-row select {
+        width: 100%;
+    }
+    
     footer .social-share {
         display: none;
     }
