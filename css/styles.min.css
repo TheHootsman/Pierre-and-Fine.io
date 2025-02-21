@@ -911,6 +911,44 @@ header .member-actions {
 	padding-bottom: 140px
 }
 
+.rsvp .rsvp-form {
+	text-align: left;	
+
+}
+
+.rsvp .rsvp-form .guest-row {
+	border: 2px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 15px;
+	background-color: #f9f9f9;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(3, auto);
+	gap: 10px;
+	color:#000
+}
+.guest-row input, .guest-row select {
+	width: 100%;
+}
+
+.rsvp .add-guest {
+	padding: 10px 20px;
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.rsvp .remove-guest {
+    margin-top: 10px;
+    color: red;
+    cursor: pointer;
+}
+
+
 .rsvp .rsvp-form .rsvp-btn {
 	padding: 15px 0;
 	border-radius: 3px;
@@ -921,7 +959,7 @@ header .member-actions {
 .rsvp .rsvp-form .form-input-group {
 	width: 100%;
 	height: 55px;
-	margin: 0 auto 10px;
+	margin: 0 auto 0px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
