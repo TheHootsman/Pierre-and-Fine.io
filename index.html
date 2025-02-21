@@ -347,59 +347,110 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+ 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12">
                 <h3>What are you waiting for?</h3>
                 <p>We would greatly appreciate if you could RSVP before 1st of May '25</p>
-                <form id="rsvp-form" class="rsvp-form"
-                      action=""
-                      method="POST">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-user"></i><input name="firstname" class=""
-                                                                 placeholder="Your first name"
-                                                                 required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-user"></i><input name="lastname" class=""
-                                                                 placeholder="Your last name"
-                                                                 required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-envelope"></i><input type="email" name="email" class=""
-                                                                     placeholder="Your email"
-                                                                     required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
-                                                                  max="4"
-                                                                  placeholder="Husband/Wife or kids"
-                                                                  required>
-                            </div>
+                <form id="rsvp-form" class="rsvp-form" action="" method="POST">
+                    <div id="guest-list">
+                        <div class="guest-row">
+                            <label for="firstname">First Name</label>
+                            <input type="text" name="firstname[]" id="firstname" placeholder="First Name" required>
+                            
+                            <label for="lastname">Last Name</label>
+                            <input type="text" name="lastname[]" id="lastname" placeholder="Last Name" required>
+                            
+                            <label for="email">Email</label>
+                            <input type="email" name="email[]" id="email" placeholder="Email" required>
+                            
+                            <label for="phone">Phone</label>
+                            <input type="tel" name="phone[]" id="phone" placeholder="Phone" required>
+                            
+                            <label for="diet">Dietary Restriction</label>
+                            <select name="diet[]" id="diet" class="diet">
+                                <option value="none" selected>No Restriction</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="other">Other</option>
+                            </select>
+                            
+                            <label for="comment">Comment</label>
+                            <input type="text" name="comment[]" id="comment" placeholder="Specify if other" class="comment" disabled>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12" id="alert-wrapper"></div>
-                    </div>
-                    <button class="btn-fill rsvp-btn">
-                        Yes,
-                        that's me!
-                    </button>
+                    <button type="button" class="add-guest" id="add-guest">Add Guest</button>
+                    <button type="submit" class="btn-fill rsvp-btn">Yes, that's me!</button>
                 </form>
             </div>
         </div>
     </div>
+    
+    <script>
+        document.getElementById('add-guest').addEventListener('click', function () {
+            let guestRows = document.querySelectorAll('.guest-row');
+            
+            // Check if there are already 6 guests
+            if (guestRows.length >= 6) {
+                // Display funny error message
+                alert('Whoa there! You\'ve reached the maximum guest limit of 6. Don\'t get too excited! 😄');
+                return; // Stop execution
+            }
+    
+            let firstGuest = document.querySelector('.guest-row');
+            let newGuest = firstGuest.cloneNode(true);
+    
+            let emailValue = document.querySelector('[name="email[]"]').value;
+            let phoneValue = document.querySelector('[name="phone[]"]').value;
+    
+            newGuest.querySelectorAll('input, select').forEach(field => {
+                if (field.name.includes('email')) {
+                    field.value = emailValue;
+                    field.disabled = true;
+                } else if (field.name.includes('phone')) {
+                    field.value = phoneValue;
+                    field.disabled = true;
+                } else if (field.name.includes('comment')) {
+                    field.value = '';
+                    field.disabled = true;
+                } else if (!field.name.includes('diet')) {
+                    field.value = '';
+                    field.disabled = false;
+                }
+            });
+    
+            newGuest.querySelector('.diet').value = 'none';
+            newGuest.querySelector('.comment').disabled = true;
+            
+            let removeBtn = document.createElement('button');
+            removeBtn.innerText = '❌';
+            removeBtn.type = 'button';
+            removeBtn.classList.add('remove-guest');
+            removeBtn.addEventListener('click', function () {
+                this.parentNode.remove();
+            });
+            newGuest.appendChild(removeBtn);
+    
+            document.getElementById('guest-list').appendChild(newGuest);
+        });
+    
+        document.addEventListener('change', function (e) {
+            if (e.target.classList.contains('diet')) {
+                let commentField = e.target.closest('.guest-row').querySelector('.comment');
+                commentField.disabled = e.target.value !== 'other';
+                if (commentField.disabled) {
+                    commentField.value = '';
+                }
+            }
+        });
+    </script>
+    
+        
+    
+      
+    
+    
 </section>
 
 <footer>
