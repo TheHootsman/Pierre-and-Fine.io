@@ -321,7 +321,7 @@
             <div class="row">
                 <div class="col-md-12 text-left">
                     <h5>Fun fact:</h5>
-                    <p>You may have noticed the different formats for writing French and German numbers. Each country follows its own standard! 
+                    <p>You may have noticed the different formats for writing French and German phone numbers. Every country follows its own standard! 
                         More about this exciting topic of national conventions for writing phone numbers on 
                         <a href="https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#France">Wikipedia</a></p>
                 </div>
@@ -355,7 +355,7 @@
                 <p>We would greatly appreciate if you could RSVP before 1st of May '25</p>
                 <form id="rsvp-form" class="rsvp-form" action="" method="POST">
                     <div id="guest-list">
-                        <div class="guest-row">
+                        <div class="guest-row" id="first-guest">
                             <label for="firstname">First Name</label>
                             <input type="text" name="firstname[]" id="firstname" placeholder="First Name" required>
                             
@@ -380,7 +380,7 @@
                             <input type="text" name="comment[]" id="comment" placeholder="Specify if other" class="comment" disabled>
                         </div>
                     </div>
-                    <button type="button" class="add-guest" id="add-guest">Add Guest</button>
+                    <button type="button" id="add-guest">Add Guest</button>
                     <button type="submit" class="btn-fill rsvp-btn">Yes, that's me!</button>
                 </form>
             </div>
@@ -389,39 +389,28 @@
     
     <script>
         document.getElementById('add-guest').addEventListener('click', function () {
-            let guestRows = document.querySelectorAll('.guest-row');
+            let firstGuest = document.getElementById('first-guest');
+            let newGuest = document.createElement('div');
+            newGuest.classList.add('guest-row');
             
-            // Check if there are already 6 guests
-            if (guestRows.length >= 6) {
-                // Display funny error message
-                alert('Whoa there! You\'ve reached the maximum guest limit of 6. Don\'t get too excited! 😄');
-                return; // Stop execution
-            }
-    
-            let firstGuest = document.querySelector('.guest-row');
-            let newGuest = firstGuest.cloneNode(true);
-    
-            let emailValue = document.querySelector('[name="email[]"]').value;
-            let phoneValue = document.querySelector('[name="phone[]"]').value;
-    
-            newGuest.querySelectorAll('input, select').forEach(field => {
-                if (field.name.includes('email')) {
-                    field.value = emailValue;
-                    field.disabled = true;
-                } else if (field.name.includes('phone')) {
-                    field.value = phoneValue;
-                    field.disabled = true;
-                } else if (field.name.includes('comment')) {
-                    field.value = '';
-                    field.disabled = true;
-                } else if (!field.name.includes('diet')) {
-                    field.value = '';
-                    field.disabled = false;
-                }
-            });
-    
-            newGuest.querySelector('.diet').value = 'none';
-            newGuest.querySelector('.comment').disabled = true;
+            newGuest.innerHTML = `
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname[]" placeholder="First Name" required>
+                
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname[]" placeholder="Last Name" required>
+                
+                <label for="diet">Dietary Restriction</label>
+                <select name="diet[]" class="diet">
+                    <option value="none" selected>No Restriction</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <label for="comment">Comment</label>
+                <input type="text" name="comment[]" placeholder="Specify if other" class="comment" disabled>
+            `;
             
             let removeBtn = document.createElement('button');
             removeBtn.innerText = '❌';
@@ -446,9 +435,6 @@
         });
     </script>
     
-        
-    
-      
     
     
 </section>
