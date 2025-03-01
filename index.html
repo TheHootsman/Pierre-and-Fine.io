@@ -349,94 +349,113 @@
     </div><!-- /.modal -->
  
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>What are you waiting for?</h3>
-                <p>We would greatly appreciate if you could RSVP before 1st of May '25</p>
-                <form id="rsvp-form" class="rsvp-form" action="" method="POST">
-                    <div id="guest-list">
-                        <div class="guest-row" id="first-guest">
-                            <label for="firstname">First Name</label>
-                            <input type="text" name="firstname[]" id="firstname" placeholder="First Name" required>
-                            
-                            <label for="lastname">Last Name</label>
-                            <input type="text" name="lastname[]" id="lastname" placeholder="Last Name" required>
-                            
-                            <label for="email">Email</label>
-                            <input type="email" name="email[]" id="email" placeholder="Email" required>
-                            
-                            <label for="phone">Phone</label>
-                            <input type="tel" name="phone[]" id="phone" placeholder="Phone" required>
-                            
-                            <label for="diet">Dietary Restriction</label>
-                            <select name="diet[]" id="diet" class="diet">
-                                <option value="none" selected>No Restriction</option>
-                                <option value="vegetarian">Vegetarian</option>
-                                <option value="vegan">Vegan</option>
-                                <option value="other">Other</option>
-                            </select>
-                            
-                            <label for="comment">Comment</label>
-                            <input type="text" name="comment[]" id="comment" placeholder="Specify if other" class="comment" disabled>
-                        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>What are you waiting for?</h3>
+            <p>We would greatly appreciate if you could RSVP before 1st of May '25</p>
+            <form id="rsvp-form" class="rsvp-form" 
+                action="https://script.google.com/macros/s/AKfycbwrIhNe0zfyWeLm1q7RV9DIvCBYMzMI8nxL9wXlhuxUiIyrOybxekuNnQP4pq0yu6XQ/exec" 
+                method="POST">
+                <div id="guest-list">
+                    <div class="guest-row" id="first-guest">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname[]" id="firstname" placeholder="First Name" required>
+                        
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname[]" id="lastname" placeholder="Last Name" required>
+                        
+                        <label for="email">Email</label>
+                        <input type="email" name="email[]" id="email" placeholder="Email" required>
+                        
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone[]" id="phone" placeholder="Phone" required>
+                        
+                        <label for="diet">Dietary Restriction</label>
+                        <select name="diet[]" id="diet" class="diet">
+                            <option value="none" selected>No Restriction</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="other">Other (please specify in comment!)</option>
+                        </select>
+                        
+                        <label for="comment">Comment</label>
+                        <input type="text" name="comment[]" id="comment" placeholder="Comment" class="comment" value="">
                     </div>
-                    <button type="button" id="add-guest">Add Guest</button>
-                    <button type="submit" class="btn-fill rsvp-btn">Yes, that's me!</button>
-                </form>
-            </div>
+                </div>
+                <button type="button" id="add-guest">Add Guest</button>
+                <button type="submit" class="btn-fill rsvp-btn">Yes, that's me!</button>
+            </form>
         </div>
     </div>
-    
+</div>
+
     <script>
+        let i = 1;
         document.getElementById('add-guest').addEventListener('click', function () {
-            let firstGuest = document.getElementById('first-guest');
+            i++;
             let newGuest = document.createElement('div');
             newGuest.classList.add('guest-row');
-            
+
             newGuest.innerHTML = `
-                <label for="firstname">First Name</label>
+                <label>First Name</label>
                 <input type="text" name="firstname[]" placeholder="First Name" required>
-                
-                <label for="lastname">Last Name</label>
+            
+                <label>Last Name</label>
                 <input type="text" name="lastname[]" placeholder="Last Name" required>
-                
-                <label for="diet">Dietary Restriction</label>
+            
+                <label>Dietary Restriction</label>
                 <select name="diet[]" class="diet">
                     <option value="none" selected>No Restriction</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="vegan">Vegan</option>
-                    <option value="other">Other</option>
+                    <option value="other">Other (please specify in comment!)</option>
                 </select>
-                
-                <label for="comment">Comment</label>
-                <input type="text" name="comment[]" placeholder="Specify if other" class="comment" disabled>
-            `;
             
+                <label>Comment</label>
+                <input type="text" name="comment[]" placeholder="Comment" class="comment" value="">
+            `;
+        
             let removeBtn = document.createElement('button');
             removeBtn.innerText = '❌';
             removeBtn.type = 'button';
             removeBtn.classList.add('remove-guest');
             removeBtn.addEventListener('click', function () {
                 this.parentNode.remove();
+                i--;
             });
             newGuest.appendChild(removeBtn);
-    
+
             document.getElementById('guest-list').appendChild(newGuest);
         });
     
-        document.addEventListener('change', function (e) {
-            if (e.target.classList.contains('diet')) {
-                let commentField = e.target.closest('.guest-row').querySelector('.comment');
-                commentField.disabled = e.target.value !== 'other';
-                if (commentField.disabled) {
-                    commentField.value = '';
-                }
-            }
+        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+                fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                let form = event.target;
+                let formData = new FormData(form);
+                formData.append("ip", data.ip);
+                formData.append("nGuests", i);
+
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
+                    alert('RSVP submitted successfully!');
+                    form.reset();
+                })
+                .catch(error => console.error('Error:', error));
+            })
+            .catch(() => {
+                alert("Failed to get IP address. Please try again.");
+            });
         });
-    </script>
-    
-    
-    
+    </script>    
 </section>
 
 <footer>
