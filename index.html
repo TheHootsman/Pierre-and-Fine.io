@@ -451,9 +451,12 @@
             .then(data => {
                 let form = event.target;
                 let formData = new FormData(form);
+                let firstName = form.querySelector('input[name="firstname[]"]').value;
+                let nGuests = i;
+                
                 formData.append("ip", data.ip);
-                formData.append("nGuests", i);
-
+                formData.append("nGuests", nGuests);
+                
                 fetch(form.action, {
                     method: form.method,
                     body: formData,
@@ -464,6 +467,15 @@
                     form.reset();
                     // Hide the loading modal and display the success modal
                     document.getElementById('loading-modal').style.display = 'none';
+
+
+                    // Update modal content
+                    let modalBody = document.querySelector("#rsvp-modal .modal-body .section-padding");
+                    modalBody.innerHTML = `
+                        <h3>Thank you, ${firstName}!</h3>
+                        <p>We have received your RSVP for ${nGuests} guest(s) and are glad to see you join join us on our big day.</p>
+                        <div id="add-to-cal"></div>
+                    `;
                     $('#rsvp-modal').modal('show');
                 })
                 .catch(error => {
