@@ -765,22 +765,19 @@ header .member-actions {
 	text-align: right;
 }
 
-/* Make images responsive */
 .witnesses .img-responsive {
     max-width: 100%;
     height: auto;
 }
 
-/* Align left column image */
 .witnesses .left-align-img {
     display: block;
-    margin-left: 0;  /* Align to the left */
+    margin-left: 0;  
 }
 
-/* Align right column image */
 .witnesses .right-align-img {
     display: block;
-    margin-left: auto; /* Align to the right */
+    margin-left: auto; 
     margin-right: 0;
 }
 
@@ -950,6 +947,7 @@ header .member-actions {
 
 
 .rsvp .rsvp-form .rsvp-btn {
+	margin-top: 15px;
 	padding: 15px 0;
 	border-radius: 3px;
 	width: 100%;
@@ -1021,6 +1019,23 @@ header .member-actions {
 	color: #bcc1c3
 }
 
+.loader {
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	animation: spin 1s linear infinite;
+	align-content: center;
+	justify-self: center;
+	margin-top: 15px;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
 footer .content {
 	border-top: 1px solid #e6e9ea;
 	padding-bottom: 20px
@@ -1056,6 +1071,7 @@ footer span.fa-heart {
 	font-size: 18px;
 	margin: 0 2px
 }
+
 
 body.modal-open {
 	padding-right: 0 !important
