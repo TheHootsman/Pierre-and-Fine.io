@@ -332,6 +332,17 @@
 
 <section class="rsvp text-center" id="rsvp">
 
+    <div id="loading-modal" class="modal" style="display: none;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3>Submitting your RSVP... Hold on!</h3>
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -344,9 +355,9 @@
                         <div id="add-to-cal"></div>
                     </div>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
  
     <div class="container">
     <div class="row">
@@ -432,9 +443,12 @@
         document.getElementById('rsvp-form').addEventListener('submit', function(event) {
             event.preventDefault(); 
 
-                fetch('https://api64.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
+            // Show the loading modal
+            document.getElementById('loading-modal').style.display = 'flex';
+
+            fetch('https://api64.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
                 let form = event.target;
                 let formData = new FormData(form);
                 formData.append("ip", data.ip);
@@ -447,13 +461,22 @@
                 .then(response => response.json())
                 .then(result => {
                     console.log('Success:', result);
-                    alert('RSVP submitted successfully!');
                     form.reset();
+                    // Hide the loading modal and display the success modal
+                    document.getElementById('loading-modal').style.display = 'none';
+                    $('#rsvp-modal').modal('show');
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting your RSVP.');
+                    // Hide the loading modal even if there's an error
+                    document.getElementById('loading-modal').style.display = 'none';
+                });
             })
             .catch(() => {
                 alert("Failed to get IP address. Please try again.");
+                // Hide the loading modal if the IP fetch fails
+                document.getElementById('loading-modal').style.display = 'none';
             });
         });
     </script>    
