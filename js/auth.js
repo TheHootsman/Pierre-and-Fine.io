@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const correctHash = "9a45271efef868a31ebbd528c407c678c33d8982871d92da3a766c1283c12f69"; // SHA-256 of the famous password
+    const correctHash = "63e14d8ebe250e386a64444764ac714cd9096aabad7490b72c7b217deb2a8cc6"; // SHA-256 of the famous password
 
     // Function to hash input string
     async function hashString(str) {
         const encoder = new TextEncoder();
-        const data = encoder.encode(str);
+        const data = encoder.encode(str.toLowerCase());
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         return hashArray.map(byte => byte.toString(16).padStart(2, "0")).join("");
