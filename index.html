@@ -49,7 +49,6 @@
         }
     </script>
 
-    
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
@@ -61,11 +60,25 @@
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
 </head>
-<body id="top" style="display: none;">
+<body id="top" style="display: block;">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+<div id="auth-modal" class="auth-modal" tabindex="1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3>Please enter the invite code (yummy 😋): </h3>
+                <input type="text" id="passwordInput" placeholder="Invite code">
+                <button onclick="checkPassword()">Submit</button>
+                <p id="errorMsg" style="color: red; display: none;">Incorrect code. Please try again!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <section class="hero">
     <section class="navigation">
         <header>
@@ -524,4 +537,5 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHWkM0Cf5t-ty05FGcDh-oFXkmVMeoOTE&callback=initMap"></script>
 </body>
+
 </html>
