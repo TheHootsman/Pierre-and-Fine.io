@@ -469,6 +469,23 @@
                         <div id="add-to-cal"></div>
                     `;
                     $('#rsvp-modal').modal('show');
+
+                    setTimeout(() => {
+                        var myCalendar = createCalendar({
+                        options: {
+                            class: '',
+                            id: ''
+                        },
+                        data: {
+                            title: "Pierre and Fine's Wedding",
+                            start: new Date('Aug 23, 2025 14:00'),
+                            end: new Date('Aug 24, 2025 02:30'),
+                            address: 'Kellerskopf, Wiesbaden',
+                            description: "We can't wait to see you on our big day!"
+                        }
+                        });
+                        $('#add-to-cal').html(myCalendar);
+                    }, 100);
                 })
                 .catch(error => {
                     console.error('Error:', error);
