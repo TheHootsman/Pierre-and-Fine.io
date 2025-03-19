@@ -508,7 +508,7 @@
                 });
             })
             .catch(() => {
-                alert("Failed to get IP address. Please try again.");
+                alert("Failed to get IP address. Please try again. Some browsers (e.g. Firefox mobile) are known to be problematic, maybe try with Chrome or Edge");
                 // Hide the loading modal if the IP fetch fails
                 document.getElementById('loading-modal').style.display = 'none';
             });
